@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .red{
+            background: red;
+        }
+        .green{
+            background: green;
+        }
+        .yellow{
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <!--key="index"  配合v-for使用,这个key是唯一的
+            用于给所遍历的元素添加一个唯一的标识号,便于vue内部追踪该元素
+        -->
+        <li v-bind:class="{red:index%3==0,green:index%3==1,yellow:index%3==2}"
+            v-for="(item,index) in arr" :key="index">
+            {{item}}
+        </li>
+    </ul>
+</div>
+<script src="../../js/vue.js" v></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            arr:['11111',22222,33333,44444,55555,66666,77777,88888]
+        },
+        methods: {
+        }
+    });
+    console.log(vm);
+</script>
+
+</body>
+</html>

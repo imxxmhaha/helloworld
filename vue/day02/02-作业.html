@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>
+        省份:
+        <select>
+            <option value=""></option>
+        </select>
+    </p>
+    <p>
+        城市:
+        <select>
+            <option value=""></option>
+        </select>
+    </p>
+
+    <p>
+        区域:
+        <select>
+            <option value=""></option>
+        </select>
+    </p>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            provs:[],
+            citys:[],
+            areas:[]
+        },
+        methods: {
+        },
+        created(){
+            // 请求数据
+            ajax('./city.json')
+                .then(res=>{
+                    //成功
+                    console.log("请求成功",res);
+                })
+                .catch(err=>{
+                    //失败
+                    console.log("请求失败",err);
+                })
+        }
+
+    });
+</script>
+</body>
+</html>

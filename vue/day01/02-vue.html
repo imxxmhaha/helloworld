@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+   <div id="app">
+       <!--视图View上所取的所有变量或函数  都是从掌管改view的vue实例上取的  并不是从obj.data.msg中取的
+            数据是通过代理proxy  交给vm去代理的vm.msg = obj.data.msg  底层做了类似这样的操作,如果vm没有msg
+            name是取不到数据的
+       -->
+       <!--指令:用于帮助用户进行DOM操作的内部方法-->
+       <!--v-model 指令: 将指定的变量和我们当前表单元素的value值进行绑定,
+                         即指定的变量是什么-->
+       <input type="text" v-model="msg">
+       <p>{{msg}}</p>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+      var vm =   new Vue({
+            el: '#app',
+            data:{   // 定义数据,data上的所有的属性都会被当前vue实例代理 会赋值给vm对象
+                msg:'hello',
+                // name:"嘻嘻",
+                // age:18
+             }
+        });
+        console.log(vm);
+        console.log(vm.msg);
+        // console.log(vm.$data.msg);
+        // function Vue(obj){
+        //     //Vue内部,定义实力上的内部变量时都会在变量名前添加$,以和用于自定义的变量区别
+        //     this.$data = obj.data;//vue内部会将obj.data赋值给vm.$data
+        //     this.msg = obj.data.msg;//同时也会将obj.data.msg 赋值给vm.msg
+        // }
+    </script>
+
+
+</body>
+</html>

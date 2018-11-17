@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <!--keydown 键盘按入事件,keyup 按键抬起事件-->
+    <!--<input type="text" v-on:keydown.13="fn">-->
+    <input type="text" v-on:keydown.enter="fn">
+    <p>{{msg}}</p>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {   //data中只能定义数据(boolean,string,number,null,object,array),不能定义函数
+            msg: 'hello',
+            name: "嘻嘻"
+        },
+        methods: {
+            fn(ev){  //等效  fn: function(){}
+                // if(ev.which=='13'){
+                //     //执行代码
+                //     console.log('输入的按键码:',ev.which);
+                // }
+                console.log('输入的按键码:',ev.which);
+            }
+        }
+    });
+    console.log(vm);
+</script>
+
+</body>
+</html>

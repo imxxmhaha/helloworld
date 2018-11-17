@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+   <div id="app">
+       <input type="text" v-model="msg">
+       <button @click="submit">提交</button>
+       <ul>
+           <!--<li v-for="(item,index) in toDoList">-->
+               <!--{{item}}-->
+           <!--</li>-->
+           <todo-item
+                   :content="item"
+                   :index="index"
+                   v-for="(item,index) in toDoList"
+                    @delete="handleItemDelete">
+
+           </todo-item>
+       </ul>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+    <script>
+        // 以下这种方式是  全局组件
+        // 组件:Vue.component("el",{});
+        // el中的驼峰会映射为:小写-小写
+        // props:参数,用来接收外部传递过来的数据
+        // template:中将props中的参数用插值表达式   表达出来
+      // Vue.component("TodoItem", {
+      //     props:['content'],
+      //     template: "<li>{{content}}</li>"
+      // })
+
+        // 此方式是局部组件  在vue 实例中声明
+        var TodoItem = {
+            props:['content','index'],
+            template: "<li @click='handleItemClick'>{{content}}</li>",
+            methods:{
+                handleItemClick: function(){
+                    // alert("呵呵")
+                    // 这里是通过$emit触发事件,暴露给父组件,this.index 是函数的参数,@delete="handleItemDelete"
+                    // 在父组件中,也就是Vue实例里面是可以监听到这个事件
+                    // 在Vue实例的methods 中定义handleItemDelete(index),就可以操作了,
+                    // 这样就实现了  父子组件的传值问题
+                    // 父组件,传值给子组件  用 props:['content','index'] 强制绑定
+                    // 子组件,传值给父组件  用this.$emit("delete",this.index)  向外暴露,供父组件监听
+                    this.$emit("delete",this.index);
+                }
+            }
+        }
+      var vm =   new Vue({
+          el: '#app',
+          components:{
+              TodoItem:TodoItem  //这种方式是局部组件,只在#app  所在的作用于有效
+          },
+          data:{
+                msg:"",
+                toDoList:[]
+          },
+          methods:{
+                submit(){
+                    if(!vm.msg){
+                        alert("请输入内容");
+                        return;
+                    }
+                    vm.toDoList.unshift(vm.msg);
+                    vm.msg='';
+                },
+              handleItemDelete:function(index){
+                  // alert("呵呵")
+                  this.toDoList.splice(index,1);
+              }
+            }
+        });
+    </script>
+</body>
+</html>

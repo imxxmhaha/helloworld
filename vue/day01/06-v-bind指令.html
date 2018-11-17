@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+    <!--{{表达式}} 插值表达式只能用在元素的innerHTML中-->
+    <!--
+        任何一个元素的任何属性的值,要从变量表达式中得到,则都要用v-bind指令取
+        v-bind:属性="变量表达式"  作用:将指定的变量表达式的值设置到指定的属性上
+
+        元素属性:class,id,style,src,自定义属性......
+    -->
+    <a v-bind:href="mHref">百度{{mHref}}</a>
+    <hr/>
+
+    <!--v-bind:class="指令值"
+        v-bind:class  可以和class共存
+        指令值的结果可以是字符串
+                    还可以是对象
+                    还可以是数组
+    -->
+    <p v-bind:class="mCla">v-bind:class--指令值是变量</p>
+    <!--如果box不是变量的话  要加''-->
+    <p v-bind:class="'box'">v-bind:class--指令值是字符串</p>
+    <p v-bind:class="{box:true,div:false,hello:true}">v-bind:class--指令值是对象</p>
+    <p v-bind:class="['box1',{box2:true,div:false,hello:true},'box3',{box4:true}]">v-bind:class--指令值是数组</p>
+
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mHref: 'http://www.baidu.com',
+            mCla:'box op'
+        },
+        methods: {}
+    });
+    console.log(vm);
+</script>
+
+</body>
+</html>

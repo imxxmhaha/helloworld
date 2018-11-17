@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!--<h1>Hello,Vue</h1>-->
+        <!--<p>{{msg}}</p>-->
+        <!--
+            当数据修改时,  会去更新真是DOM
+            但是不会整个DOM都全部更新,而是值更新改变部分
+            由于内部有一层虚拟DOM,每次数据更新时都会得到新的虚拟DOM,
+            新的虚拟DOM会和上一次的内存中保存的虚拟DOM进行比较,根据比较结果去更新有变化的真是DOM
+        -->
+
+        <input type="checkbox" v-model="flag">
+        <!--
+            v-if/v-else  切换两个相同类型元素时,会将该元素及其元素内相同的部分尽可能复用
+            如果不想复用  可以指定key 为不一样 ,就不会复用了 ,如果key 是一样的 还是会复用
+        -->
+        
+        
+        <div class="box1" v-if="flag">
+            <input type="text" key="a">
+            <p>段落1111</p>
+        </div>
+
+        <div class="box2" v-else>
+            <input type="text" key="b">
+            <p>222222</p>
+        </div>
+
+        <button @click="msg='zhangsan'">修改msg</button>
+    </div>
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg:"hello",
+            flag:true
+        },
+        methods: {
+        }
+    });
+</script>
+</body>
+</html>

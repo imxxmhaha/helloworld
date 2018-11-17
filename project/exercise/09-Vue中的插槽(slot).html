@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中的插槽</title>
+</head>
+<body>
+
+   <div id="app">
+       <child >
+           <div class="header" slot="header">header</div>
+           <div class="footer" slot="footer">footer</div>
+       </child>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+        Vue.component('child',{
+            template:`<div>
+                            <slot name="header"></slot>
+                            <p>hello</p>
+                            <slot name="footer"></slot>
+                        </div>`
+        })
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+             }
+        });
+    </script>
+</body>
+</html>

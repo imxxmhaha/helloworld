@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p :style="mStyle"></p>
+    <hr/>
+    <p :style="{width: '100px',height: '100px',background:'green'}"></p>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mStyle:"width: 100px;height: 100px;background: red;"
+        },
+        methods: {
+        }
+    });
+    console.log(vm);
+</script>
+</body>
+</html>

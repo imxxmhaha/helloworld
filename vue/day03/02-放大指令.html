@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrap{
+            border: 1px solid #ccc;
+            position: absolute;
+        }
+        .wrap img{
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        自定义指令
+            全局注册自定义指令
+                Vue.directive('名称',{
+                    // 指令的选项
+                    bind:function(el,binding){},
+                    inserted:function(){},
+                    update:function(){},
+                    unbind:function(){}
+                })
+
+            局部注册自定义指令:
+                new Vue({
+                    directives:{
+                        '名称':{
+                            // 指令的选项
+                        }
+                    }
+                })
+    -->
+
+
+   <div id="app">
+
+       <div class="wrap" v-my-scale>
+           <img  width="450"
+                 src="//img12.360buyimg.com/n1/s450x450_jfs/t1/4528/10/3590/153299/5b997bf5E4a513949/45ab3dd6c35d981b.jpg" >
+       </div>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+    <script>
+        // 注册自定义指令
+        Vue.directive('my-scale',{
+            bind(el,binding){
+                // 操作el: div.wrap
+
+                // 指令的操作
+                // 1.设置元素的输入移入事件 mounseenter
+                //    在鼠标移入后:1)创建遮罩层
+            }
+        });
+
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+             }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        自定义拖拽指令
+    -->
+
+   <div id="app">
+       <div class="box" v-my-drag></div>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+        // 自定义指令
+        Vue.directive('my-drag',{
+            // 三个钩子  bind ,inserted,updated
+            bind(el){
+                // 设置定位
+                el.style.position = 'absolute'
+                // 参数el: 当前Dom元素
+                el.onmousedown = function(ev){
+                    // 计算鼠标的偏移位置
+                    var disX = ev.pageX - el.offsetLeft;
+                    var disY = ev.pageY - el.offsetTop;
+
+                    // 设置鼠标移动事件
+                    document.onmousemove = function (ev) {
+                        // 鼠标移动
+                        // 让元素跟随鼠标移动
+                        el.style.left = ev.pageX-disX+'px';
+                        el.style.top = ev.pageY-disY+'px';
+                    }
+                    
+                    // 设置鼠标抬起事件
+                    document.onmouseup = function (ev) {
+                        document.onmousemove = null;
+                    }
+                }
+            }
+        });
+
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+             }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+   <div id="app">
+       <!--Dom 监听 给input绑定了v-model="msg"  ,会监听msg的值的改变
+           然后由vm 去操作dom 把改变的值替换掉,然后进行 data bind(数据绑定)
+           这样,实现数据的双向同步
+        -->
+       <input type="text" v-model="msg">
+       <!--{{变量}}  插值表达式-->
+       <p>{{msg}}</p>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+    <script>
+        // new Vue()  创建Vue对象,创建Vue实例
+        new Vue({   //对象(key:value)
+            el: '#app', // 当前Vue实例所挂在的视图节点
+            data:{
+                 msg:'hello'
+             }
+        })
+
+
+    </script>
+
+
+</body>
+</html>

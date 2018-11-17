@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+   <div id="app">
+       <div v-cloak>{{content}}</div>
+       <hr/>
+       <!--
+            v-text:将变量的值渲染到所在元素的innerText
+       -->
+       <div v-text="content"></div>
+       <div v-html="content"></div>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                content:"<a href='http://www.baidu.com'>百度</a>"
+             }
+        });
+    </script>
+</body>
+</html>

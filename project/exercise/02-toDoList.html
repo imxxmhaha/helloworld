@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+   <div id="app">
+       <input type="text" v-model="msg">
+       <button @click="submit">提交</button>
+       <ul>
+           <li v-for="(item,index) in toDoList">
+               {{item}}
+           </li>
+       </ul>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                msg:"",
+                toDoList:[]
+             },
+            methods:{
+                submit(){
+                    vm.toDoList.unshift(vm.msg);
+                    vm.msg='';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

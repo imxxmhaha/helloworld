@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+    用Vue做一个表格,显示
+        姓名    年龄    性别    操作
+        张三    20       男    <a >删除</a>
+    数据自己填写
+    表格样式具有条纹效果
+-->
+<div id="app">
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(person,index) in persons">
+                <td v-for="(val,key,index) in person" :key="index">{{val}}</td>
+                <th><a href="#" v-on:click="remove(index)">删除</a></th>
+            </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <div>
+        <h1>新增人员</h1>
+        <p>
+            姓名: <input type="text" v-model="newPerson.name">
+        </p>
+        <p>
+            年龄: <input type="number" v-model="newPerson.age">
+        </p>
+        <p>
+            性别: <input type="radio" value="男" v-model="newPerson.gender">男
+            <input type="radio" value="女" v-model="newPerson.gender">女
+        </p>
+            <button v-on:click="add">添加</button>
+        
+    </div>
+    
+    
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newPerson:{name:"",age:"",gender:""},
+            persons:[
+                {name:"jack",age:18,gender:"男"},
+                {name:"rose",age:17,gender:"女"},
+                {name:"simon",age:18,gender:"男"},
+                {name:"anni",age:17,gender:"女"}
+            ]
+        },
+        methods: {
+            remove(index){
+                // console.log(index);
+                this.persons.splice(index,1);
+                // this.persons[index] = null;
+            },
+            add(){
+                this.persons.push(this.newPerson);
+            }
+        }
+    });
+    console.log(vm);
+</script>
+</body>
+</html>

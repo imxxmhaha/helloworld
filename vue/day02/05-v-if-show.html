@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="flag">
+        <!--v-if="布尔值"   控制所在的元素显示隐藏
+            当v-if="false"  时dom节点直接从内存中消失了
+            当v-if="true"   时会在内存中新建dom节点
+        -->
+        <!--v-show="布尔值" 控制所在的元素显示隐藏
+            当v-show="false"  时,只是通过style:"display:none;" 来隐藏
+        -->
+
+        <!--
+        1. 当加载的某个对象的值很大的时候,我们要实现懒加载的时候
+            用v-if 好一点,在内存中直接就让它消失3
+        2. 当需要频繁的切换显示/隐藏的时候,用v-show好一些,因为不用
+            频繁地操作dom,修改内存中的值,只是切换一下样式
+        -->
+        <div class="box" v-if="flag"></div><br/>
+        <div class="box" v-show="flag"></div>
+
+    </div>
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag:true
+        },
+        methods: {
+        }
+    });
+</script>
+</body>
+</html>

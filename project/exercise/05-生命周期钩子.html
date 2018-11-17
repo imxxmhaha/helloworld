@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue实例生命周期函数</title>
+</head>
+<body>
+
+   <div id="app">
+       <input type="text" v-model="msg">
+       <hr>
+        {{msg}}
+   </div>
+
+   <script src="../../js/vue.js"></script>
+    <script>
+        // 声明周期函数,就是vue实例在某一个时间点,会自动执行的函数
+      var vm =   new Vue({
+          el: '#app',
+          data:{
+              msg:"Hello World"
+          },
+          beforeCreate(){//vue 实例创建之前
+              console.log("beforeCreate");
+          },
+          created(){
+              console.log("created");
+          },
+          beforeMount(){
+              console.log("beforeMount  在数据挂载到页面之前执行");
+              console.log(this.$el);
+          },
+          mounted(){
+              console.log("mount  挂载之后执行");
+              console.log(this.$el);
+          },
+          beforeDestroy(){
+              console.log("beforeDestroy  执行");
+          },
+          destroyed(){
+              console.log("destroy  执行");
+          },
+          beforeUpdate(){
+              console.log("数据即将改变" +this.msg);
+          },
+          updated(){
+              console.log("数据改变了"+this.msg);
+          }
+
+
+        });
+    </script>
+</body>
+</html>

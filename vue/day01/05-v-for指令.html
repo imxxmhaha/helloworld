@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <!--遍历数组-->
+        <li v-for="(person,index) in persons" >
+            {{index}}---{{person.name}}  {{person.age}} {{person.gender}}
+            <button v-on:click="remove(index)">删除</button>
+            <button v-on:click="update(index)">修改</button>
+        </li>
+
+        <br/>
+        <!--遍历对象-->
+
+        <p>
+            <span v-for="(val,key,index) in persons[0]" :key="key">
+                {{index}}  {{key}}  {{val}} <br>
+            </span>
+        </p>
+
+    </ul>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            persons:[
+                {name:"jack",age:18,gender:"男"},
+                {name:"rose",age:17,gender:"女"},
+                {name:"simon",age:18,gender:"男"},
+                {name:"anni",age:17,gender:"女"}
+            ]
+        },
+        methods: {
+            remove(index){
+                console.log(index);
+                // splice可以实现增删改
+                // this.persons.splice(index,0,obj); //增加元素
+                // this.persons.splice(index,1,obj); //修改元素  ,其实在在index处删除这个元素然后再用obj填充进来
+                // this.persons.splice(index,1);     //删除元素  ,从index处删除1位元素,也可以删除多个
+                this.persons.splice(index,1)
+            },
+            update(index){
+                console.log(index);
+                this.persons.splice(index,1,{name:"xxm",age:18,gender:"男"})
+            }
+        }
+    });
+    console.log(vm);
+</script>
+
+</body>
+</html>

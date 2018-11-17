@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态组件与v-once指令</title>
+</head>
+<body>
+
+   <div id="app">
+       <!--<child-one v-if="type ===true"></child-one>-->
+       <!--<child-two v-if="type ===false"></child-two>-->
+       <!--
+            动态组件中  :is="组件的名称"   根据组件的名称 显示对应的组件,
+                   在这个例子中可以用一个type 表示组件的名称,通过点击,改变
+                   组件的名称,从而使得:is=""中的组件名称变化,来动态显示相关组件
+       -->
+       <component :is="type"></component>
+
+       <button @click="handleBtnClick">change</button>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+        Vue.component('child-one',{
+            template: '<div>child-one</div>'
+        })
+
+        Vue.component('child-two',{
+            template: '<div>child-two</div>'
+        })
+
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                type: 'child-one'
+             },
+          methods:{
+              handleBtnClick(){
+                  this.type = this.type== 'child-one'? 'child-two':'child-one'
+              }
+          }
+        });
+    </script>
+</body>
+</html>

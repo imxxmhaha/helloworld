@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+   <div id="app">
+       <child :cnum ="pnum" @hehe="pClick"></child>
+       <child :cnum ="pnum" @click.native="pClick"></child>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+        Vue.component('child',{
+            template: '<div @click="handleClick">{{cnum}}</div>',
+            props:['cnum'],
+            methods: {
+                handleClick:function () {
+                    this.cnum = this.cnum +1;
+                    this.$emit('hehe',this.cnum);
+                }
+            }
+        })
+
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                pnum : 1
+             },
+            methods:{
+                pClick(cnum){
+                    alert(cnum);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

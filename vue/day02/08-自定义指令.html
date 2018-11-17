@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+
+   <div id="app">
+       <!--自定义指令和内置指令用法一样,都是作为元素的自定义属性使用-->
+       <div v-my-directive>
+           <input type="text" v-model="msg">
+       </div>
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+        // 全局注册指令
+        // 参数1:指令名称,可以驼峰命名,也可以短横线命名,也可以首字母全大写
+        // 参数2:指令的选项
+        Vue.directive('my-directive',{
+            // key:value
+            // 钩子函数:即内部会自动回调的函数
+            bind:function(el,binding){
+                console.log("当指令和所在的元素绑定时回调.....");
+                console.log("当前元素对象:",el);
+                console.log("指令信息对象:",binding);
+            },
+            inserted:function(){
+                console.log("当指令所在的元素插入到父节点是回调...");
+            },
+            update:function () {
+                console.log("当指令所在的元素内有数据更新时回调...");
+            }
+        });
+        // 局部注册指令
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                msg:"hello"
+             }
+        });
+    </script>
+</body>
+</html>

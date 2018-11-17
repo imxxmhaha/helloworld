@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .tab{
+            width: 300px;
+        }
+        .tab-content{
+            height: 300px;
+            border: 1px solid #000;
+        }
+        .active{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+   <div id="app">
+       <div class="tab">
+           <!--按钮-->
+            <button v-for="(tab,index) in tabDatas" :key="'btn'+index" :class="{active:index==tabNum}" @click="switchTab(index)">
+                {{tab.title}}
+            </button>
+            <!--内容-->
+            <div class="tab-content" v-show="index==tabNum" v-for="(tab,index) in tabDatas" :key="'div'+index">
+                {{tab.content}}
+            </div>
+       </div>
+       <!--
+            template元素:可以将若干个元素组合成为一个整体,
+            template本身不渲染到DOM中
+       -->
+        <!--<template v-for="(item,index) in tabDatas">-->
+            <!--<button>{{item.title}}</button>-->
+            <!--<div>{{item.content}}</div>-->
+        <!--</template>-->
+
+   </div>
+
+   <script src="../../js/vue.js"></script>
+
+    <script>
+      var vm =   new Vue({
+            el: '#app',
+            data:{
+                tabNum:0,
+                tabDatas:[
+                    {
+                        title:"体育",
+                        content:"体育体育体育"
+                    },
+                    {
+                        title:"财经",
+                        content:"财经财经财经"
+                    },
+                    {
+                        title:"娱乐",
+                        content:"娱乐娱乐娱乐"
+                    }
+                ]
+             },
+            methods:{
+                switchTab(index){
+                    this.tabNum=index;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
